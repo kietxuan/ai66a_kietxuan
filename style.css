@@ -1,0 +1,67 @@
+* {
+    box-sizing: border-box;
+}
+
+.dashboard {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: lightblue;
+    align-items: center;
+    gap: 20px;
+}
+
+.dashboard .card {
+    font-family: Arial, sans-serif;
+    font-size: 30px;
+    color: orange;
+
+    width: 200px;
+    margin: 10px 20px 10px 20px;
+    /*margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin: 10px;*/
+    padding: 10px;
+    background-color: lightgray;
+    border: 2px solid;
+    border-radius: 10px;
+    /*flex-grow: 1;*/
+    /*flex-shrink: 1;*/
+    flex: 1 1 200px;
+    
+}
+
+@media screen and (max-width: 768px) {
+    .dashboard {
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .dashboard .card {
+        padding: 6px;
+    }
+}
+
+#top-product {
+    color: yellow;
+}
+
+.product {
+    color: red;
+}
+
+.dashboard .card:hover {
+    color: green;
+}
+
+.container .card{
+    font-style: italic;
+}
+
+nav a:hover{
+    color:pink;
+}

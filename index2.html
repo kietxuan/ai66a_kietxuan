@@ -4,6 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      h1 {
+        color: red;
+      }
+    </style>
   </head>
 
   <body>
@@ -13,7 +19,7 @@
         alt="logo"
         width="200"
       />
-      <h2>Web Design And Programming</h2>
+      <h1>Web Design And Programming</h1>
     </header>
     <nav>
       <a href="#overview">Overview</a>
@@ -45,6 +51,33 @@
       </section>
       <section id="result">
         <h2>Result</h2>
+        <table>
+          <caption>
+            Model performance comparison
+          </caption>
+
+          <thead>
+            <tr>
+              <th>Model</th>
+              <th>Accuracy</th>
+              <th>F1</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td>Logistic Regression</td>
+              <td>0.91</td>
+              <td>0.88</td>
+            </tr>
+
+            <tr>
+              <td>Random Forest</td>
+              <td>0.94</td>
+              <td>0.91</td>
+            </tr>
+          </tbody>
+        </table>
         <p>
           Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quos
           nesciunt sit voluptas incidunt. Possimus quia minima, ullam cum vitae
@@ -68,5 +101,19 @@
         </p>
       </section>
     </main>
+    <div class="container">
+      <div class="product card" id="top-product" style="color: blue">
+        Product 1
+      </div>
+      <div class="product card">Product 2</div>
+      <div class="product card">Product 3</div>
+    </div>
+
+    <div class="dashboard">
+      <div class="product card">Accuracy: 94%</div>
+      <div class="product card">Loss: 0.12</div>
+      <div class="product card">F1 Score: 0.91</div>
+      <div class="product card">Latency: 25 ms</div>
+    </div>
   </body>
 </html>
