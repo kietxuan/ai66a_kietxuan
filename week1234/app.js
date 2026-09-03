@@ -68,4 +68,3 @@ console.log("High-confidence samples:", highConfidenceSamples);
 console.log("Total result:", sumField(predictionSamples, "result"));
 console.log("Largest result:", findLargestByField(predictionSamples, "result"));
 console.log("Total result (arrow function):", sumResults(predictionSamples));
-
