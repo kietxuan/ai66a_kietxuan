@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>House Price Prediction</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <main class="card">
+      <h1>House Price Prediction</h1>
+      <p class="description">Enter the house details to estimate its price.</p>
+
+      <form id="house-form">
+        <label for="area">Area (m²)</label>
+        <input
+          id="area"
+          name="area"
+          type="number"
+          min="0"
+          step="0.01"
+          placeholder="Example: 80"
+          required
+        />
+
+        <label for="bedrooms">Number of bedrooms</label>
+        <input
+          id="bedrooms"
+          name="bedrooms"
+          type="number"
+          min="0"
+          step="1"
+          placeholder="Example: 3"
+          required
+        />
+
+        <label for="location">Location</label>
+        <select id="location" name="location">
+          <option value="other">Other</option>
+          <option value="hanoi">Hanoi</option>
+          <option value="hcmc">HCMC</option>
+        </select>
+
+        <button type="submit">Predict Price</button>
+      </form>
+
+      <div id="result" aria-live="polite">Enter the house information and submit the form.</div>
+    </main>
+  </body>
+</html>
