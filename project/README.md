@@ -1,10 +1,15 @@
-# House Price Prediction API
+# FastAPI Labs
 
-This project connects the Week 2 house form to a FastAPI backend. It includes a synchronous `predict_price()` function, `GET /predict`, `POST /predict`, and the frontend served by FastAPI from the same origin. The frontend is split into `house_form.html`, `style.css`, and `app.js`.
+This simple project completes the Week 7 labs in one `main.py` file.
 
-## How to run
+- Lab 1: in-memory CRUD for `/items`
+- Lab 2: validation, separate request/response models, status codes, 404 errors, paging, filtering, sorting, duplicate-name checks, and a paginated response envelope
+- Lab 3: serves the existing house-price frontend from `/static`
+- Extra practice: `PATCH /items/{item_id}` and `POST /predict/house-price`
 
-From PowerShell, run these commands in order:
+## Run
+
+From PowerShell:
 
 ```powershell
 cd project
@@ -15,42 +20,33 @@ cd backend
 uvicorn main:app --reload
 ```
 
-Run `python -m venv venv` only the first time, or whenever the virtual environment needs to be recreated. If PowerShell blocks activation, run Uvicorn without activating the environment:
+Open these URLs:
 
-```powershell
-cd backend
-..\venv\Scripts\python.exe -m uvicorn main:app --reload
-```
+- Frontend: `http://127.0.0.1:8000/`
+- API documentation: `http://127.0.0.1:8000/docs`
 
-Open the form at:
+## Main item routes
 
-`http://127.0.0.1:8000/static/house_form.html`
+| Method | Route | Purpose |
+| --- | --- | --- |
+| GET | `/items` | List items with `skip`, `limit`, `min_price`, `max_price`, `q`, `sort_by`, and `order` |
+| POST | `/items` | Create an item |
+| GET | `/items/{item_id}` | Get one item |
+| PUT | `/items/{item_id}` | Replace one item |
+| PATCH | `/items/{item_id}` | Update only fields sent in the body |
+| DELETE | `/items/{item_id}` | Delete one item |
 
-You can also open the shorter URL below; it redirects to the form:
+`GET /items` returns `{ "items": [], "total": 0, "skip": 0, "limit": 10 }` when no items exist. Item names must be unique without regard to upper/lower case; duplicate requests return HTTP 409.
 
-`http://127.0.0.1:8000/`
+## Prediction routes
 
-The interactive API documentation is available at:
-
-`http://127.0.0.1:8000/docs`
-
-## Required checks and explanations
-
-For `GET /predict?area=80&bedrooms=3&location=hanoi`, the returned JSON is:
+The existing frontend calls `GET /predict`. The separate practice endpoint below accepts a JSON body:
 
 ```json
+POST /predict/house-price
 {
-  "area": 80.0,
+  "area_sqm": 80,
   "bedrooms": 3,
-  "location": "hanoi",
-  "predicted_price": 2405000000.0
+  "distance_to_center_km": 5
 }
 ```
-
-- `location` is optional, so omitting it still works because FastAPI uses the default value `"other"`.
-- `area` is required, so omitting it returns HTTP `422`: FastAPI validates the typed query parameters before calling the endpoint.
-- The endpoints use `def` because the calculation is short and synchronous; there is no asynchronous I/O to await.
-- A query parameter is sent in the URL, while the POST endpoint receives the fields inside a JSON request body.
-- The frontend uses the relative URL `/predict`. Because FastAPI serves the page and API on `127.0.0.1:8000`, the browser sends the request to the same origin and no CORS configuration is needed.
-
-The browser form formats the returned `predicted_price` with thousands separators and displays an error message if the API request fails.
